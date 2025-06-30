@@ -411,4 +411,29 @@
                 flex-wrap: wrap;
             }
         }
+
+/* Стили для креативного блока */
+.creative-block {
+    background-color: #fff8e1;
+    color: #5d4037;
+    border: 1px dashed #ffb300;
+    border-radius: 10px;
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.creative-block .license-title {
+    color: #5d4037;
+}
+
+.creative-block ul, 
+.creative-block ol {
+    margin: 15px 0 15px 25px;
+}
+
+.creative-block li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
     </style>
