@@ -242,19 +242,18 @@
         
         /* Лицензионный блок */
         .license-block {
-    background: #e1f5fe; /* Светло-голубой фон */
+    background: #eef4fb; /* Светло-голубой фон */
     border-radius: 10px;
     padding: 30px;
     color: #0d47a1; /* Темно-синий цвет текста */
     margin-bottom: 40px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    border: 1px solid #bbdefb; /* Тонкая голубая граница */
 }
 
 .license-title {
     font-size: 24px;
     margin-bottom: 20px;
-    color: #0d47a1; /* Темно-синий для заголовка */
+    color: #5997df; /* Темно-синий для заголовка */
 }
 
 .license-links {
@@ -266,7 +265,7 @@
 .license-link {
     display: inline-block;
     background: rgba(13, 71, 161, 0.1); /* Полупрозрачный темно-синий */
-    color: #0d47a1; /* Темно-синий текст */
+    color: #5997df; /* Темно-синий текст */
     padding: 10px 20px;
     border-radius: 6px;
     text-decoration: none;
