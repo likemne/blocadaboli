@@ -242,38 +242,42 @@
         
         /* Лицензионный блок */
         .license-block {
-            background: linear-gradient(135deg, #1a6dcc 0%, #0d4a9e 100%);
-            border-radius: 10px;
-            padding: 30px;
-            color: white;
-            margin-bottom: 40px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .license-title {
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-        
-        .license-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .license-link {
-            display: inline-block;
-            background: rgba(255,255,255,0.15);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 6px;
-            text-decoration: none;
-            transition: background 0.3s ease;
-        }
-        
-        .license-link:hover {
-            background: rgba(255,255,255,0.25);
-        }
+    background: #e1f5fe; /* Светло-голубой фон */
+    border-radius: 10px;
+    padding: 30px;
+    color: #0d47a1; /* Темно-синий цвет текста */
+    margin-bottom: 40px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border: 1px solid #bbdefb; /* Тонкая голубая граница */
+}
+
+.license-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #0d47a1; /* Темно-синий для заголовка */
+}
+
+.license-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.license-link {
+    display: inline-block;
+    background: rgba(13, 71, 161, 0.1); /* Полупрозрачный темно-синий */
+    color: #0d47a1; /* Темно-синий текст */
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid #bbdefb; /* Голубая граница */
+}
+
+.license-link:hover {
+    background: rgba(13, 71, 161, 0.2); /* Более насыщенный при наведении */
+    box-shadow: 0 2px 8px rgba(13, 71, 161, 0.15);
+}
         
         /* Футер */
         footer {
