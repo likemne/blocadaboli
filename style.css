@@ -245,7 +245,7 @@
     background: #eef4fb; /* Светло-голубой фон */
     border-radius: 10px;
     padding: 30px;
-    color: #0d47a1; /* Темно-синий цвет текста */
+    color: #eef4fb; /* Темно-синий цвет текста */
     margin-bottom: 40px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 }
@@ -270,7 +270,6 @@
     border-radius: 6px;
     text-decoration: none;
     transition: all 0.3s ease;
-    border: 1px solid #bbdefb; /* Голубая граница */
 }
 
 .license-link:hover {
