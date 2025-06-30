@@ -252,28 +252,12 @@
 .license-title {
     font-size: 24px;
     margin-bottom: 20px;
-    color: #5997df; /* Темно-синий для заголовка */
 }
 
 .license-links {
     display: flex;
     gap: 15px;
     margin-top: 20px;
-}
-
-.license-link {
-    display: inline-block;
-    background: rgba(13, 71, 161, 0.1); /* Полупрозрачный темно-синий */
-    color: #5997df; /* Темно-синий текст */
-    padding: 10px 20px;
-    border-radius: 6px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.license-link:hover {
-    background: rgba(13, 71, 161, 0.2); /* Более насыщенный при наведении */
-    box-shadow: 0 2px 8px rgba(13, 71, 161, 0.15);
 }
         
         /* Футер */
