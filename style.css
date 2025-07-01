@@ -375,4 +375,135 @@
     margin-bottom: 8px;
     line-height: 1.5;
 }
+
+/* ======= СТИЛЬНАЯ БЕЛАЯ ШАПКА ======= */
+header {
+    background: white;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s ease;
+}
+
+.logo i {
+    color: #ff6b6b; /* акцентный цвет для иконки */
+    font-size: 28px;
+    animation: pulse 2s infinite;
+}
+
+.logo span {
+    font-size: 22px;
+    font-weight: 700;
+    color: #2c3e50; /* темно-серый цвет */
+    letter-spacing: -0.5px;
+}
+
+.city-selector {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.city-selector i {
+    color: #5997df; /* синий цвет */
+    font-size: 18px;
+}
+
+.city-selector select {
+    appearance: none;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 8px 35px 8px 15px;
+    font-size: 14px;
+    color: #2c3e50;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%235997df' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+}
+
+.city-selector select:hover {
+    border-color: #5997df;
+    box-shadow: 0 0 0 3px rgba(89, 151, 223, 0.1);
+}
+
+.main-nav {
+    display: flex;
+    justify-content: center;
+    padding: 12px 0;
+    gap: 2px;
+}
+
+.nav-item {
+    padding: 10px 18px;
+    font-size: 15px;
+    color: #2c3e50;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+.nav-item:hover {
+    color: #5997df;
+}
+
+.nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #5997df;
+    transform: translateX(-50%);
+    transition: all 0.3s ease;
+}
+
+.nav-item:hover::after {
+    width: 70%;
+}
+
+/* Анимация для логотипа */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Адаптивность шапки */
+@media (max-width: 768px) {
+    .top-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .main-nav {
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+    
+    .nav-item {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+}
     </style>
