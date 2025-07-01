@@ -1,766 +1,517 @@
-<style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: #f5f7fa;
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-        
-        /* Шапка сайта */
-        
-        .main-nav {
-            display: flex;
-            padding: 15px 0;
-        }
-        
-        .nav-item {
-            margin-right: 25px;
-            font-size: 16px;
-            cursor: pointer;
-            position: relative;
-            padding: 5px 0;
-        }
-        
-        .nav-item:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #ffd700;
-            transition: width 0.3s ease;
-        }
-        
-        .nav-item:hover:after {
-            width: 100%;
-        }
-        
-        /* Хлебные крошки */
-        .breadcrumbs {
-            background-color: #e9ecef;
-            padding: 15px 0;
-            font-size: 14px;
-        }
-        
-        .breadcrumbs a {
-            color: #1a6dcc;
-            text-decoration: none;
-        }
-        
-        .breadcrumbs a:hover {
-            text-decoration: underline;
-        }
-        
-        /* Основной контент */
-        main {
-            padding: 30px 0;
-        }
-        
-        .page-title {
-            font-size: 32px;
-            margin-bottom: 25px;
-            color: #0d4a9e;
-            position: relative;
-            padding-left: 15px;
-        }
-        
-        .page-title:before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 5px;
-            height: 80%;
-            width: 5px;
-            background: #1a6dcc;
-        }
-        
-        .filters {
-            display: flex;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
-            gap: 10px;
-        }
-        
-        .filter-item {
-            background: #e9ecef;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .filter-item.active, .filter-item:hover {
-            background: #1a6dcc;
-            color: white;
-        }
-        
-        .reset-filter {
-            background: #dc3545;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-        }
-        
-        .reset-filter:hover {
-            background: #bd2130;
-        }
-        
-        /* Статьи */
-        .articles-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-        
-        .article-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .article-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-        }
-        
-        .article-image {
-            height: 200px;
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .article-content {
-            padding: 20px;
-        }
-        
-        .article-meta {
-            display: flex;
-            justify-content: space-between;
-            font-size: 14px;
-            color: #6c757d;
-            margin-bottom: 12px;
-        }
-        
-        .article-category {
-            display: inline-block;
-            background: #e9ecef;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 12px;
-            color: #495057;
-        }
-        
-        .article-title {
-            font-size: 20px;
-            margin: 10px 0;
-            color: #212529;
-        }
-        
-        .article-excerpt {
-            color: #495057;
-            margin-bottom: 20px;
-        }
-        
-        .read-more {
-            display: inline-block;
-            color: #1a6dcc;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-        
-        .read-more:hover {
-            color: #0d4a9e;
-            text-decoration: underline;
-        }
-        
-        /* Лицензионный блок */
-        .license-block {
-    background: #eef4fb; /* Светло-голубой фон */
-    border-radius: 10px;
-    padding: 30px;
-    margin-bottom: 40px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-}
-
-.license-title {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-.license-links {
-    display: flex;
-    gap: 15px;
-    margin-top: 20px;
-}
-        
-        /* Футер */
-        footer {
-            background: #343a40;
-            color: #e9ecef;
-            padding-top: 50px;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-        
-        .footer-column h3 {
-            font-size: 18px;
-            margin-bottom: 20px;
-            color: #f8f9fa;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-column h3:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 2px;
-            background: #1a6dcc;
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-links a {
-            color: #adb5bd;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: #1a6dcc;
-        }
-        
-        .contact-info {
-            font-size: 15px;
-        }
-        
-        .contact-info p {
-            margin-bottom: 10px;
-        }
-        
-        .phone {
-            font-size: 20px;
-            font-weight: bold;
-            color: white;
-            margin: 15px 0;
-        }
-        
-        .footer-bottom {
-            background: #212529;
-            padding: 20px 0;
-            font-size: 14px;
-        }
-        
-        .footer-bottom-content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .footer-links-bottom {
-            display: flex;
-            gap: 20px;
-        }
-        
-        .footer-links-bottom a {
-            color: #adb5bd;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .footer-links-bottom a:hover {
-            color: #1a6dcc;
-        }
-        
-        .copyright {
-            margin-top: 10px;
-            color: #6c757d;
-        }
-        
-        .warning {
-            background: #dc3545;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 5px;
-            margin: 15px 0;
-            font-size: 14px;
-            max-width: 500px;
-        }
-        
-        /* Адаптивность */
-        @media (max-width: 768px) {
-            .top-header {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .main-nav {
-                flex-wrap: wrap;
-            }
-            
-            .nav-item {
-                margin-right: 15px;
-                margin-bottom: 10px;
-            }
-            
-            .footer-bottom-content {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-            }
-            
-            .footer-links-bottom {
-                flex-wrap: wrap;
-            }
-        }
-
-/* Стили для креативного блока */
-.creative-block {
-    background-color: #fff8e1;
-    color: #5d4037;
-    border: 1px dashed #ffb300;
-    border-radius: 10px;
-    padding: 30px;
-    margin-bottom: 40px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-}
-
-.creative-block .license-title {
-    color: #5d4037;
-}
-
-.creative-block ul, 
-.creative-block ol {
-    margin: 15px 0 15px 25px;
-}
-
-.creative-block li {
-    margin-bottom: 8px;
-    line-height: 1.5;
-}
-
-/* ======= СТИЛЬНАЯ БЕЛАЯ ШАПКА ======= */
-header {
-    background: white;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.top-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 0;
-    border-bottom: 1px solid #eee;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    transition: all 0.3s ease;
-}
-
-.logo i {
-    color: #ff6b6b; /* акцентный цвет для иконки */
-    font-size: 28px;
-    animation: pulse 2s infinite;
-}
-
-.logo span {
-    font-size: 22px;
-    font-weight: 700;
-    color: #2c3e50; /* темно-серый цвет */
-    letter-spacing: -0.5px;
-}
-
-.city-selector {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.city-selector i {
-    color: #5997df; /* синий цвет */
-    font-size: 18px;
-}
-
-.city-selector select {
-    appearance: none;
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 20px;
-    padding: 8px 35px 8px 15px;
-    font-size: 14px;
-    color: #2c3e50;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%235997df' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-}
-
-.city-selector select:hover {
-    border-color: #5997df;
-    box-shadow: 0 0 0 3px rgba(89, 151, 223, 0.1);
-}
-
-.main-nav {
-    display: flex;
-    justify-content: center;
-    padding: 12px 0;
-    gap: 2px;
-}
-
-.nav-item {
-    padding: 10px 18px;
-    font-size: 15px;
-    color: #2c3e50;
-    position: relative;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border-radius: 4px;
-}
-
-.nav-item:hover {
-    color: #5997df;
-}
-
-.nav-item::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background: #5997df;
-    transform: translateX(-50%);
-    transition: all 0.3s ease;
-}
-
-.nav-item:hover::after {
-    width: 70%;
-}
-
-/* Анимация для логотипа */
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-}
-
-/* ======= СТИЛЬНАЯ БЕЛАЯ ШАПКА С ЛОГОТИПОМ ======= */
-header {
-    background: white;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.top-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 0;
-    border-bottom: 1px solid #eee;
-}
-
-.logo-container {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.main-logo {
-    height: 60px; /* Регулируйте по необходимости */
-    width: auto;
-    transition: transform 0.3s ease;
-}
-
-.main-logo:hover {
-    transform: scale(1.05);
-}
-
-.clinic-info {
-    display: flex;
-    flex-direction: column;
-}
-
-.clinic-name {
-    font-size: 22px;
-    font-weight: 700;
-    color: #2c3e50;
-    letter-spacing: -0.5px;
-}
-
-.clinic-specialty {
-    font-style: italic;
-    font-size: 15px;
-    margin-top: 3px;
-}
-
-.city-selector {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.city-selector i {
-    color: #5997df;
-    font-size: 18px;
-}
-
-.city-selector select {
-    appearance: none;
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 20px;
-    padding: 8px 35px 8px 15px;
-    font-size: 14px;
-    color: #2c3e50;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%235997df' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-}
-
-.city-selector select:hover {
-    border-color: #5997df;
-    box-shadow: 0 0 0 3px rgba(89, 151, 223, 0.1);
-}
-
-.main-nav {
-    display: flex;
-    justify-content: center;
-    padding: 12px 0;
-    gap: 2px;
-}
-
-.nav-item {
-    padding: 10px 18px;
-    font-size: 15px;
-    color: #2c3e50;
-    position: relative;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border-radius: 4px;
-}
-
-.nav-item:hover {
-    color: #5997df;
-}
-
-.nav-item::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background: #5997df;
-    transform: translateX(-50%);
-    transition: all 0.3s ease;
-}
-
-.nav-item:hover::after {
-    width: 70%;
-}
-
-/* ======= СТИЛЬНАЯ БЕЛАЯ ШАПКА С ЛОГОТИПОМ ======= */
-header {
-    background: white;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.top-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 0;
-    border-bottom: 1px solid #eee;
-}
-
-.logo-container {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.main-logo {
-    height: 60px; /* Регулируйте по необходимости */
-    width: auto;
-    transition: transform 0.3s ease;
-}
-
-.main-logo:hover {
-    transform: scale(1.05);
-}
-
-.clinic-info {
-    display: flex;
-    flex-direction: column;
-}
-
-.clinic-name {
-    font-size: 22px;
-    font-weight: 700;
-    color: #2c3e50;
-    letter-spacing: -0.5px;
-}
-
-.clinic-specialty {
-    font-style: italic;
-    color: #5997df;
-    font-size: 15px;
-    margin-top: 3px;
-}
-
-.city-selector {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.city-selector i {
-    color: #5997df;
-    font-size: 18px;
-}
-
-.city-selector select {
-    appearance: none;
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 20px;
-    padding: 8px 35px 8px 15px;
-    font-size: 14px;
-    color: #2c3e50;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%235997df' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-}
-
-.city-selector select:hover {
-    border-color: #5997df;
-    box-shadow: 0 0 0 3px rgba(89, 151, 223, 0.1);
-}
-
-.main-nav {
-    display: flex;
-    justify-content: center;
-    padding: 12px 0;
-    gap: 2px;
-}
-
-.nav-item {
-    padding: 10px 18px;
-    font-size: 15px;
-    color: #2c3e50;
-    position: relative;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border-radius: 4px;
-}
-
-.nav-item:hover {
-    color: #5997df;
-}
-
-.nav-item::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background: #5997df;
-    transform: translateX(-50%);
-    transition: all 0.3s ease;
-}
-
-.nav-item:hover::after {
-    width: 70%;
-}
-
-/* Адаптивность шапки */
-@media (max-width: 768px) {
+  <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+        background-color: #f5f7fa;
+        color: #333;
+        line-height: 1.6;
+    }
+    
+    .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+    
+    /* Шапка сайта */
+    header {
+        background: white;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+    
     .top-header {
-        flex-direction: column;
-        gap: 15px;
-        align-items: flex-start;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 0;
+        border-bottom: 1px solid #eee;
     }
     
     .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .main-logo {
+        height: 60px;
+        width: auto;
+        transition: transform 0.3s ease;
+    }
+    
+    .clinic-info {
+        display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        position: relative;
+        padding-left: 15px;
+        margin-left: 15px;
+    }
+    
+    .clinic-info::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 70%;
+        width: 1px;
+        background-color: #ddd;
     }
     
     .clinic-specialty {
-        font-size: 14px;
+        font-style: italic;
+        color: #5997df;
+        font-size: 15px;
     }
     
     .city-selector {
-        width: 100%;
-        justify-content: flex-start;
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .city-selector i {
+        color: #5997df;
+        font-size: 18px;
+    }
+    
+    .city-selector select {
+        appearance: none;
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        padding: 8px 35px 8px 15px;
+        font-size: 14px;
+        color: #2c3e50;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%235997df' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+    }
+    
+    .city-selector select:hover {
+        border-color: #5997df;
+        box-shadow: 0 0 0 3px rgba(89, 151, 223, 0.1);
     }
     
     .main-nav {
-        flex-wrap: wrap;
-        gap: 5px;
-        justify-content: flex-start;
+        display: flex;
+        justify-content: center;
+        padding: 12px 0;
+        gap: 2px;
     }
     
     .nav-item {
-        padding: 8px 12px;
+        padding: 10px 18px;
+        font-size: 15px;
+        color: #2c3e50;
+        position: relative;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border-radius: 4px;
+    }
+    
+    .nav-item:hover {
+        color: #5997df;
+    }
+    
+    .nav-item::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: #5997df;
+        transform: translateX(-50%);
+        transition: all 0.3s ease;
+    }
+    
+    .nav-item:hover::after {
+        width: 70%;
+    }
+    
+    /* Адаптивность шапки */
+    @media (max-width: 768px) {
+        .top-header {
+            flex-direction: column;
+            gap: 15px;
+            align-items: flex-start;
+        }
+        
+        .logo-container {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .clinic-info {
+            padding-left: 0;
+            margin-left: 0;
+        }
+        
+        .clinic-info::before {
+            display: none;
+        }
+        
+        .city-selector {
+            width: 100%;
+            justify-content: flex-start;
+        }
+        
+        .main-nav {
+            flex-wrap: wrap;
+            gap: 5px;
+            justify-content: flex-start;
+        }
+        
+        .nav-item {
+            padding: 8px 12px;
+            font-size: 14px;
+        }
+    }
+    
+    /* Хлебные крошки */
+    .breadcrumbs {
+        background-color: #e9ecef;
+        padding: 15px 0;
         font-size: 14px;
     }
-}
-    </style>
+    
+    .breadcrumbs a {
+        color: #1a6dcc;
+        text-decoration: none;
+    }
+    
+    .breadcrumbs a:hover {
+        text-decoration: underline;
+    }
+    
+    /* Основной контент */
+    main {
+        padding: 30px 0;
+    }
+    
+    .page-title {
+        font-size: 32px;
+        margin-bottom: 25px;
+        color: #0d4a9e;
+        position: relative;
+        padding-left: 15px;
+        text-align: center;
+    }
+    
+    .page-title:before {
+        display: none;
+    }
+    
+    .presentation-intro {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto 40px;
+        font-size: 18px;
+        color: #555;
+    }
+    
+    .section-title {
+        font-size: 28px;
+        margin: 40px 0 15px;
+        color: #0d4a9e;
+        position: relative;
+        padding-bottom: 10px;
+    }
+    
+    .section-title:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: #1a6dcc;
+    }
+    
+    .section-description {
+        font-size: 18px;
+        color: #666;
+        margin-bottom: 30px;
+    }
+    
+    .filters {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+        gap: 10px;
+    }
+    
+    .filter-item {
+        background: #e9ecef;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .filter-item.active, .filter-item:hover {
+        background: #1a6dcc;
+        color: white;
+    }
+    
+    .reset-filter {
+        background: #dc3545;
+        color: white;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: none;
+    }
+    
+    .reset-filter:hover {
+        background: #bd2130;
+    }
+    
+    /* Статьи */
+    .articles-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 30px;
+        margin-bottom: 40px;
+    }
+    
+    .article-card {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .article-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    }
+    
+    .article-image {
+        height: 200px;
+        background-size: cover;
+        background-position: center;
+    }
+    
+    .article-content {
+        padding: 20px;
+    }
+    
+    .article-meta {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        color: #6c757d;
+        margin-bottom: 12px;
+    }
+    
+    .article-category {
+        display: inline-block;
+        background: #e9ecef;
+        padding: 4px 10px;
+        border-radius: 4px;
+        font-size: 12px;
+        color: #495057;
+    }
+    
+    .article-title {
+        font-size: 20px;
+        margin: 10px 0;
+        color: #212529;
+    }
+    
+    .article-excerpt {
+        color: #495057;
+        margin-bottom: 20px;
+    }
+    
+    .read-more {
+        display: inline-block;
+        color: #1a6dcc;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+    
+    .read-more:hover {
+        color: #0d4a9e;
+        text-decoration: underline;
+    }
+    
+    /* Стратегический блок */
+    .strategy-block {
+        background: #eef4fb;
+        border-radius: 10px;
+        padding: 30px;
+        margin-bottom: 40px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    .strategy-title {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+    
+    /* Креативный блок */
+    .creative-block {
+        background-color: #fff8e1;
+        color: #5d4037;
+        border: 1px dashed #ffb300;
+        border-radius: 10px;
+        padding: 30px;
+        margin-bottom: 40px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    .creative-block .strategy-title {
+        color: #5d4037;
+    }
+    
+    .creative-block ul, 
+    .creative-block ol {
+        margin: 15px 0 15px 25px;
+    }
+    
+    .creative-block li {
+        margin-bottom: 8px;
+        line-height: 1.5;
+    }
+    
+    /* Футер */
+    footer {
+        background: #343a40;
+        color: #e9ecef;
+        padding-top: 50px;
+    }
+    
+    .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        margin-bottom: 40px;
+    }
+    
+    .footer-column h3 {
+        font-size: 18px;
+        margin-bottom: 20px;
+        color: #f8f9fa;
+        position: relative;
+        padding-bottom: 10px;
+    }
+    
+    .footer-column h3:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50px;
+        height: 2px;
+        background: #1a6dcc;
+    }
+    
+    .footer-links {
+        list-style: none;
+    }
+    
+    .footer-links li {
+        margin-bottom: 10px;
+    }
+    
+    .footer-links a {
+        color: #adb5bd;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+        color: #1a6dcc;
+    }
+    
+    .contact-info {
+        font-size: 15px;
+    }
+    
+    .contact-info p {
+        margin-bottom: 10px;
+    }
+    
+    .phone {
+        font-size: 20px;
+        font-weight: bold;
+        color: white;
+        margin: 15px 0;
+    }
+    
+    .footer-bottom {
+        background: #212529;
+        padding: 20px 0;
+        font-size: 14px;
+    }
+    
+    .footer-bottom-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .footer-links-bottom {
+        display: flex;
+        gap: 20px;
+    }
+    
+    .footer-links-bottom a {
+        color: #adb5bd;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+    
+    .footer-links-bottom a:hover {
+        color: #1a6dcc;
+    }
+    
+    .copyright {
+        margin-top: 10px;
+        color: #6c757d;
+    }
+    
+    .warning {
+        background: #dc3545;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        margin: 15px 0;
+        font-size: 14px;
+        max-width: 500px;
+    }
+    
+    /* Адаптивность */
+    @media (max-width: 768px) {
+        .footer-bottom-content {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .footer-links-bottom {
+            flex-wrap: wrap;
+        }
+    }
+  </style>
